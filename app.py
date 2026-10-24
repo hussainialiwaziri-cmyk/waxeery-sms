@@ -37,6 +37,18 @@ def init_db():
                 course TEXT NOT NULL DEFAULT ''
             )
         """)
+                db.execute("""
+            CREATE TABLE IF NOT EXISTS course_registrations (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                student_id INTEGER NOT NULL,
+                course_code TEXT NOT NULL,
+                course_title TEXT NOT NULL DEFAULT '',
+                semester TEXT NOT NULL,
+                session TEXT NOT NULL,
+                FOREIGN KEY (student_id) REFERENCES students(id),
+                UNIQUE (student_id, course_code, semester, session)
+            )
+        """)
 
         columns = [
             row["name"]
