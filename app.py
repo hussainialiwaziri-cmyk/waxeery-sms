@@ -26,7 +26,7 @@ def init_db():
                 password TEXT NOT NULL
             )
         """)
-
+               
         db.execute("""
             CREATE TABLE IF NOT EXISTS students (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -37,7 +37,8 @@ def init_db():
                 course TEXT NOT NULL DEFAULT ''
             )
         """)
-                db.execute("""
+
+        db.execute("""
             CREATE TABLE IF NOT EXISTS course_registrations (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 student_id INTEGER NOT NULL,
@@ -48,8 +49,7 @@ def init_db():
                 FOREIGN KEY (student_id) REFERENCES students(id),
                 UNIQUE (student_id, course_code, semester, session)
             )
-        """)
-
+        """) 
         columns = [
             row["name"]
             for row in db.execute(
