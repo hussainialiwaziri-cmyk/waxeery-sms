@@ -286,9 +286,10 @@ def delete_course_registration(registration_id):
 
         return jsonify({"message": "Course registration deleted successfully"})
 
+init_db()
+
 if __name__ == "__main__":
-    init_db()
-    app.run(host="127.0.0.1", port=5000, debug=False)
+    app.run(host="0.0.0.0", port=5000, debug=False)
 
 
 
